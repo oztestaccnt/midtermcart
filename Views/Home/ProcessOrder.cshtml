@@ -1,0 +1,51 @@
+﻿@using HTMLHelpers.Models
+@model IEnumerable<HTMLHelpers.Models.Order>
+
+@{
+    ViewBag.Title = "ProcessOrder";
+    double total = 0;
+}
+
+<h2>Thanks for Your Order!</h2>
+<h3>Once your odered is processed, we'll email additional details. </h3>
+<br/>
+<h4><b>Order Details</b></h4>
+
+
+<div class="col-md-6">
+    <ul>
+        @foreach (Order o in Model)
+        {
+
+
+            //{0} {1} are items that are coming from Prod.Name and Qty
+            <li>
+                @string.Format("{0}: {1} x {2}" ,
+                o.Prod.Name, o.Qty, o.Prod.Price.ToString("C"))
+        </li>
+
+        //line above will give formatting to two items listed below
+        @*<li>@o.Prod.Name</li>
+            <li>@o.Qty</li>*@
+
+        total += o.Prod.Price * o.Qty;
+
+            
+    }
+    </ul>
+
+    <h3>
+        Your Order Total: @total.ToString("C")
+    </h3>
+</div>
+
+<div class="col-md-6">
+    <h4><b>Your Item(s) will be shipped to:</b></h4>
+
+    <ul>
+      
+    </ul>
+
+       
+
+</div>
